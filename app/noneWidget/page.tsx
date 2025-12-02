@@ -27,7 +27,19 @@ export default function Home() {
     if (!cesiumContainerRef.current) return;
 
     // Initialize the Cesium Viewer
-    const viewer = new Viewer(cesiumContainerRef.current);
+    const viewer = new Viewer(cesiumContainerRef.current, {
+      geocoder: false, // 不会创建地理位置搜索工具
+      homeButton: false, // 不会创建 HomeButton
+      sceneModePicker: false, // 不会创建 2D、3D、CV 模式切换按钮
+      baseLayerPicker: false, // 不会创建地图选择按钮
+      navigationHelpButton: false, // 不会创建帮助按钮
+      animation: false, // 不会创建动画部件
+      timeline: false, // 不会创建时间轴部件
+      fullscreenButton: false, // 不会创建全屏按钮
+    });
+
+    // 隐藏 logo 和数据源
+    viewer.cesiumWidget.creditContainer.style.display = "none";
 
     viewerRef.current = viewer;
 
